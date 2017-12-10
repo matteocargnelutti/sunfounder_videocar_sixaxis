@@ -47,7 +47,7 @@ else:
     buttons = joystick.get_numbuttons()
 
 #-----------------------------------------------------------------------------
-# Input mapping
+# Joystick mapping
 #-----------------------------------------------------------------------------
 # Joystick map 
 # "used" = has the button been used on the last loop cycle ?
@@ -67,7 +67,7 @@ joystick_map['camera_y-'] = {"key": 8, "used": False} # L2
 joystick_map['camera_reset'] = {"key": 0, "used": False} # Select = reset position
 
 #-----------------------------------------------------------------------------
-# Catch input loop (every 0.1s)
+# Main loop (1 cycle = 0.1s)
 #-----------------------------------------------------------------------------
 while True:
 
@@ -79,7 +79,7 @@ while True:
  
     # For each button :
     # If the button is pressed :
-    # - do the more appropriate action, mark the button as used
+    # - execute the command, mark the button as used
     # If the button is not pressed : 
     # - if it was pressed on the previous cycle,  do the appropriate clean-up action 
     if buttons != 0:
@@ -90,7 +90,7 @@ while True:
             joystick_map['forward']['used'] = True
         # Forward : released
         else:
-            if joystick_map['forward']['used']: # If used on previous turn
+            if joystick_map['forward']['used']: # If used on previous cycle
                 motor.stop()
                 joystick_map['forward']['used'] = False
 
@@ -101,7 +101,7 @@ while True:
             joystick_map['backward']['used'] = True
         # Backward : released
         else:
-            if joystick_map['backward']['used']: # If used on previous turn
+            if joystick_map['backward']['used']: # If used on previous cycle
                 motor.stop()
                 joystick_map['backward']['used'] = False
 
@@ -112,7 +112,7 @@ while True:
             joystick_map['left']['used'] = True
         # Left : released
         else:
-            if joystick_map['left']['used']: # If used on previous turn
+            if joystick_map['left']['used']: # If used on previous cycle
                 car_dir.home()
                 joystick_map['left']['used'] = False
 
@@ -123,7 +123,7 @@ while True:
             joystick_map['right']['used'] = True
         # Right : released
         else:
-            if joystick_map['right']['used']: # If used on previous turn
+            if joystick_map['right']['used']: # If used on previous cycle
                 car_dir.home()
                 joystick_map['right']['used'] = False
             
@@ -134,7 +134,7 @@ while True:
             joystick_map['camera_x+']['used'] = True
         # Camera x+ : released
         else:
-            if joystick_map['camera_x+']['used']: # If used on previous turn
+            if joystick_map['camera_x+']['used']: # If used on previous cycle
                 #video_dir.home_x_y()
                 joystick_map['camera_x+']['used'] = False
             
@@ -145,8 +145,7 @@ while True:
             joystick_map['camera_x-']['used'] = True
         # Camera x- : released
         else:
-            if joystick_map['camera_x-']['used']: # If used on previous turn
-                #video_dir.home_x_y()
+            if joystick_map['camera_x-']['used']: # If used on previous cycle
                 joystick_map['camera_x-']['used'] = False
 
         # Camera y+ : pressed
@@ -156,8 +155,7 @@ while True:
             joystick_map['camera_y+']['used'] = True
         # Camera x+ : released
         else:
-            if joystick_map['camera_y+']['used']: # If used on previous turn
-                #video_dir.home_x_y()
+            if joystick_map['camera_y+']['used']: # If used on previous cycle
                 joystick_map['camera_y+']['used'] = False
             
         # Camera x- : pressed
@@ -167,8 +165,7 @@ while True:
             joystick_map['camera_y-']['used'] = True
         # Camera x- : released
         else:
-            if joystick_map['camera_y-']['used']: # If used on previous turn
-                #video_dir.home_x_y()
+            if joystick_map['camera_y-']['used']: # If used on previous cycle
                 joystick_map['camera_y-']['used'] = False
         
         # Camera reset : pressed
@@ -178,8 +175,7 @@ while True:
             joystick_map['camera_reset']['used'] = True
         # Camera x- : released
         else:
-            if joystick_map['camera_reset']['used']: # If used on previous turn
-                #video_dir.home_x_y()
+            if joystick_map['camera_reset']['used']: # If used on previous cycle
                 joystick_map['camera_reset']['used'] = False
 
     sleep(0.1)
