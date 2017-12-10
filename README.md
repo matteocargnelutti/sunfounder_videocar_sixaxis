@@ -23,4 +23,4 @@ Pair your controller, and then launch `python sixaxis_server.py`.
 
 Run ./startcar.sh, which will export display : a work around to prevent **pygame** from crashing *(as it would normally need a display to work ... yeah I know, not ideal)*.
 
-You may want to make this script launch at startup, so the car doesn't require an external computer to start : for that purpose, I would recommend to use **supervisor** to make this script run and restart automatically.
+You may want to make this script launch at startup, so the car doesn't require an external computer to start : for that purpose, I would recommend using **supervisor** to make this script run and restart automatically.
